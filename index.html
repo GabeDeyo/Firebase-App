@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sampleApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Scheduling</title>
+
+    <!-- CSS -->
+    <!-- load Bootstrap and custom style.css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/journal/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+    
+    <script src="firebaseApp.js"></script>
+    
+</head>
+
+<body>
+    <div class="container" ng-controller="mainController">
+
+        <div class="page-header text-center">
+            <h1>Schedule City</h1>
+        </div>
+
+        <div class="row times">
+            <div class="col-xs-4 text-center" ng-repeat="day in days">
+
+                <h2>{{day.name}}</h2>
+
+                <div class="time-slot" ng-repeat="slot in day.slots">
+
+                    <input type="checkbox" id="{{ day.name }}-{{$index}}" ng-model="slot.booked">
+                    
+                    <label for="{{ day.name }}-{{$index}}">{{slot.time}}<br>
+                        <span ng-if="slot.booked">Booked</span>
+                        <span ng-if="!slot.booked">Available</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <p class="text-center">
+                <a href="#" class="btn btn-primary" ng-click="reset()">Reset</a>
+            </p>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
